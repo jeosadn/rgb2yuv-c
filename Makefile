@@ -1,20 +1,18 @@
-PREFIX=/usr/local
+PREFIX ?= /usr/local
+BINDIR ?= bin
+INSTALL ?= install
+CFLAGS += 
+LDLAGS += 
 
-src=$(wildcard *.c)
-obj=$(src:.c=.o)
+TARGET = rgb2yuv-c
 
-rgb2yuv-c: $(obj)
-	$(CC) -o $@ $^
+all: $(TARGET)
 
-.PHONY: clean
+%: %.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+
 clean:
-	rm -f $(obj) rgb2yuv-c
+	$(RM) $(TARGET)
 
-.PHONY: install
-install: rgb2yuv-c
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp $< $(DESTDIR)$(PREFIX)/bin/rgb2yuv-c
-
-.PHONY: uninstall
-uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/rgb2yuv-c
+install: $(TARGET)
+	$(INSTALL) $(TARGET) $(DESTDIR)$(PREFIX)/$(BINDIR)/$(TARGET)
