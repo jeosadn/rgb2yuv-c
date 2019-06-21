@@ -15,4 +15,5 @@ clean:
 	$(RM) $(TARGET)
 
 install: $(TARGET)
+	mkdir -p $(DESTDIR)$(PREFIX)/$(BINDIR)
 	$(INSTALL) $(TARGET) $(DESTDIR)$(PREFIX)/$(BINDIR)/$(TARGET)
