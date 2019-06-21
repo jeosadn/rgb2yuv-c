@@ -1,4 +1,4 @@
-PREFIX ?= /usr/local
+PREFIX ?= /usr
 BINDIR ?= bin
 INSTALL ?= install
 CFLAGS += 
