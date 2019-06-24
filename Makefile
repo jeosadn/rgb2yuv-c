@@ -9,7 +9,7 @@ TARGET = rgb2yuv-c
 all: $(TARGET)
 
 %: %.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $<
+	g++ $(CFLAGS) $(LDFLAGS) -o $@ $<
 
 clean:
 	$(RM) $(TARGET)
