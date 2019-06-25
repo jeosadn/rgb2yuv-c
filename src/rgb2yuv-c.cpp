@@ -16,6 +16,7 @@ int menu(int argc, char **argv, char **RGB, char **YUV, int *exit){
     int help = 0;
     *RGB = NULL;
     *YUV = NULL;
+    *exit = 0;
 
     int opt;
 
@@ -137,7 +138,7 @@ int main (int argc, char **argv) {
 
     char *RGB_file_name;
     char *YUV_file_name;
-    int exit = 0;
+    int exit;
 
     struct timeval time1;
     struct timeval time2;
