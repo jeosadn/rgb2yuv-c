@@ -1,2 +1,5 @@
 *.o
 rgb2yuv-c
+autom4te.cache/
+*.log
+*.status
