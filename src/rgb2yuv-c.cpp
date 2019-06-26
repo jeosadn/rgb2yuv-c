@@ -10,8 +10,6 @@
 using namespace std;
 
 int menu(int argc, char **argv, char **RGB, char **YUV, int *exit){
-    //char *RGB = NULL;
-    //char *YUV = NULL;
     int authors = 0;
     int help = 0;
     *RGB = NULL;
@@ -83,8 +81,6 @@ char* convert_pixel(char buf[3]) {
     //Casting signed char to float
     for (int i=0; i<3; i++){
         buf2[i] = float(static_cast<unsigned char>(buf[i]));
-        //Scaling to 0..1 values
-        buf2[i] = buf2[i]/255;
     }
 
     //Doing convertion rgb_888 to yuv_444
@@ -94,14 +90,8 @@ char* convert_pixel(char buf[3]) {
 
     //Casting float to signed char
     for (int i=0; i<3; i++){
-        //Scaling again to 0..255 values
-        result_float[i] = result_float[i]*255;
         result_pixel[i] = char(result_float[i]);
     }
-
-    //printf("CHAR1: %d %d %d\n", buf[0], buf[1], buf[2]);
-    //cout << "INT: " << buf2[0] << " " << buf2[1] << " " << buf2[2] << endl;
-    //printf("CHAR2: %d %d %d\n", result_pixel[0], result_pixel[1], result_pixel[2]);
 
     return result_pixel;
 }
@@ -110,7 +100,6 @@ void rgb2yuv (char *input_image, char *output_image){
     ifstream in_image;
     ofstream out_image;
 
-    //char pixels_rgb[640*480*3];
     char pixels_yuv[640*480*3];
 
     in_image.open(input_image, ios::in | ios::binary); //Example image input: "sample_640x480.rgb"
@@ -123,7 +112,6 @@ void rgb2yuv (char *input_image, char *output_image){
     while (in_image.read(buf_rgb, sizeof(buf_rgb))) {
         buf_yuv = convert_pixel(buf_rgb);
 
-        //memcpy(&pixels_rgb[i*3], buf_rgb, sizeof(buf_rgb));
         memcpy(&pixels_yuv[i*3], buf_yuv, sizeof(buf_rgb));
 
         i++;
